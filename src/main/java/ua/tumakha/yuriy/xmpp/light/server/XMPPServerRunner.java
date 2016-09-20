@@ -60,7 +60,7 @@ public class XMPPServerRunner implements CommandLineRunner {
         endpoint.setPort(xmppPort);
         xmppServer.addEndpoint(endpoint);
 
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("keystore");
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(keystore);
         xmppServer.setTLSCertificateInfo(is, keystorePassword);
 
         // allow anonymous authentication
