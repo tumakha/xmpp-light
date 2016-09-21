@@ -3,6 +3,7 @@ package ua.tumakha.yuriy.xmpp.light.storage;
 import org.apache.vysper.xml.fragment.Attribute;
 import org.apache.vysper.xml.fragment.XMLElement;
 import org.apache.vysper.xmpp.modules.extension.xep0160_offline_storage.MemoryOfflineStorageProvider;
+import org.apache.vysper.xmpp.protocol.NamespaceURIs;
 import org.apache.vysper.xmpp.stanza.Stanza;
 import org.apache.vysper.xmpp.stanza.StanzaBuilder;
 
@@ -30,7 +31,7 @@ public class MyMemoryOfflineStorageProvider extends MemoryOfflineStorageProvider
     @Override
     protected void storeStanza(Stanza stanza) {
         StanzaBuilder stanzaBuilder = StanzaBuilder.createClone(stanza, true, null);
-        XMLElement delay = new XMLElement("urn:xmpp:delay", "delay", null,
+        XMLElement delay = new XMLElement(NamespaceURIs.URN_XMPP_DELAY, "delay", null,
                 asList(new Attribute("from", domain),
                         new Attribute("stamp", ZonedDateTime.now(clock).format(ZONED_DATE_TIME))), null);
         Stanza delayedStanza = stanzaBuilder.addPreparedElement(delay).build();
