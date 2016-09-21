@@ -18,7 +18,7 @@ import static java.util.Arrays.asList;
  */
 public class MyMemoryOfflineStorageProvider extends MemoryOfflineStorageProvider {
 
-    private static final DateTimeFormatter ZONED_DATE_TIME = ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    private static final DateTimeFormatter ZONED_DATE_TIME = ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
     private static final Clock clock = Clock.systemDefaultZone();
 
     private String domain;
