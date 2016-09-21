@@ -5,13 +5,22 @@ import org.apache.vysper.storage.StorageProviderRegistry;
 import org.apache.vysper.xmpp.addressing.EntityImpl;
 import org.apache.vysper.xmpp.authorization.Anonymous;
 import org.apache.vysper.xmpp.authorization.SASLMechanism;
+import org.apache.vysper.xmpp.modules.core.base.handler.MessageHandler;
 import org.apache.vysper.xmpp.modules.extension.xep0045_muc.MUCModule;
 import org.apache.vysper.xmpp.modules.extension.xep0045_muc.model.Conference;
 import org.apache.vysper.xmpp.modules.extension.xep0045_muc.model.RoomType;
 import org.apache.vysper.xmpp.modules.extension.xep0060_pubsub.PublishSubscribeModule;
 import org.apache.vysper.xmpp.modules.extension.xep0077_inbandreg.InBandRegistrationModule;
 import org.apache.vysper.xmpp.modules.extension.xep0092_software_version.SoftwareVersionModule;
+import org.apache.vysper.xmpp.modules.extension.xep0119_xmppping.XmppPingModule;
+import org.apache.vysper.xmpp.modules.extension.xep0202_entity_time.EntityTimeModule;
+import org.apache.vysper.xmpp.protocol.DefaultHandlerDictionary;
+import org.apache.vysper.xmpp.protocol.HandlerDictionary;
+import org.apache.vysper.xmpp.protocol.StanzaHandler;
+import org.apache.vysper.xmpp.server.DefaultServerRuntimeContext;
 import org.apache.vysper.xmpp.server.XMPPServer;
+import org.apache.vysper.xmpp.stanza.MessageStanza;
+import org.apache.vysper.xmpp.stanza.Stanza;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +45,9 @@ public class XMPPServerRunner implements CommandLineRunner {
 
     @Autowired
     private StorageProviderRegistry storageProviderRegistry;
+
+    @Autowired
+    private MyMessageHandler myMessageHandler;
 
     private String domain;
     private int xmppPort;
@@ -74,8 +86,13 @@ public class XMPPServerRunner implements CommandLineRunner {
 
         xmppServer.addModule(new MUCModule("conference", conference));
         xmppServer.addModule(new InBandRegistrationModule());
+        xmppServer.addModule(new XmppPingModule());
         xmppServer.addModule(new PublishSubscribeModule());
         xmppServer.addModule(new SoftwareVersionModule());
+
+        // add MessageHandler
+        HandlerDictionary handlerDictionary = new DefaultHandlerDictionary(myMessageHandler);
+        ((DefaultServerRuntimeContext) xmppServer.getServerRuntimeContext()).addDictionary(handlerDictionary);
 
         LOG.info("XMPP Server is running on port {}", xmppPort);
     }

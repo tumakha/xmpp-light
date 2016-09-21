@@ -8,7 +8,7 @@ import javax.persistence.Id;
 /**
  * @author Yuriy Tumakha.
  */
-@Entity
+@Entity(name = "user")
 public class User {
 
     @Id
@@ -20,6 +20,9 @@ public class User {
 
     @Column(nullable = false, length = 1024)
     private String password;
+
+    @Column(nullable = false, columnDefinition = "tinyint(1) default 0")
+    private boolean admin;
 
     public Long getId() {
         return id;
@@ -43,6 +46,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
 }
