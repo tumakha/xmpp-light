@@ -17,15 +17,12 @@ import javax.annotation.PostConstruct;
 public class DbStorageProviderRegistry extends OpenStorageProviderRegistry {
 
     @Autowired
-    private Environment env;
-
-    @Autowired
     private DbUserManagement dbUserManagement;
 
     @PostConstruct
     public void init() {
         add(dbUserManagement);
-        add(new MyMemoryOfflineStorageProvider(env.getProperty("xmpp.domain")));
+        add(new MyMemoryOfflineStorageProvider());
         add(new MemoryRosterManager());
         add(new LeafNodeInMemoryStorageProvider());
         add(new CollectionNodeInMemoryStorageProvider());
