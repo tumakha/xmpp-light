@@ -5,7 +5,6 @@ import org.apache.vysper.xmpp.modules.extension.xep0060_pubsub.storageprovider.C
 import org.apache.vysper.xmpp.modules.extension.xep0060_pubsub.storageprovider.LeafNodeInMemoryStorageProvider;
 import org.apache.vysper.xmpp.modules.roster.persistence.MemoryRosterManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
