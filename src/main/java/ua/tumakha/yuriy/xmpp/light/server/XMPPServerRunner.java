@@ -53,6 +53,7 @@ public class XMPPServerRunner implements CommandLineRunner {
     private int xmppPort;
     private String keystore;
     private String keystorePassword;
+    private boolean saveMessage;
 
     @PostConstruct
     public void init() {
@@ -60,6 +61,7 @@ public class XMPPServerRunner implements CommandLineRunner {
         xmppPort = env.getProperty("xmpp.clients.port", Integer.class, 5222);
         keystore = env.getProperty("xmpp.keystore.path");
         keystorePassword = env.getProperty("xmpp.keystore.password");
+        saveMessage = env.getProperty("xmpp.message.save", Boolean.class, false);
     }
 
     @Override
@@ -90,9 +92,11 @@ public class XMPPServerRunner implements CommandLineRunner {
         xmppServer.addModule(new PublishSubscribeModule());
         xmppServer.addModule(new SoftwareVersionModule());
 
-        // add MessageHandler
-        HandlerDictionary handlerDictionary = new DefaultHandlerDictionary(myMessageHandler);
-        ((DefaultServerRuntimeContext) xmppServer.getServerRuntimeContext()).addDictionary(handlerDictionary);
+        if (saveMessage) {
+            // add MessageHandler
+            HandlerDictionary handlerDictionary = new DefaultHandlerDictionary(myMessageHandler);
+            ((DefaultServerRuntimeContext) xmppServer.getServerRuntimeContext()).addDictionary(handlerDictionary);
+        }
 
         LOG.info("XMPP Server is running on port {}", xmppPort);
     }
