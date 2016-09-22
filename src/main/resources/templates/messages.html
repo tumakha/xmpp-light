@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>XMPP Light : Messages</title>
+</head>
+<body>
+<h2 layout:fragment="header">Messages</h2>
+<div layout:fragment="content">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Time</th>
+            <th>Body</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${messages.numberOfElements == 0}">
+            <td colspan="4" style="text-align: center;">No messages found</td>
+        </tr>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.fromJID}">from</td>
+            <td th:text="${message.toJID}">to</td>
+            <td th:text="${#dates.format(message.time, 'dd MMM yyyy HH:mm:ss XXX')}">time</td>
+            <td th:text="${message.body}">body</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

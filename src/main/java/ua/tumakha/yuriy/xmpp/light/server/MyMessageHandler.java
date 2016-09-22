@@ -16,6 +16,7 @@ import ua.tumakha.yuriy.xmpp.light.domain.Message;
 import ua.tumakha.yuriy.xmpp.light.service.MessageService;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author Yuriy Tumakha.
@@ -56,16 +57,18 @@ public class MyMessageHandler extends MessageHandler {
             MessageStanza messageStanza = (MessageStanza) stanza;
             MessageStanzaType messageStanzaType = messageStanza.getMessageType();
             switch (messageStanzaType) {
-                case NORMAL:
                 case CHAT:
                 case GROUPCHAT:
                     try {
-                        Message message = new Message();
-                        message.setFromJID(messageStanza.getFrom().getBareJID().getFullQualifiedName());
-                        message.setToJID(messageStanza.getTo().getBareJID().getFullQualifiedName());
-                        message.setBody(messageStanza.getBodies().values().iterator().next().getSingleInnerText().getText());
-                        message.setTime(new Date().getTime());
-                        messageService.saveMessage(message);
+                        Map<String, XMLElement> bodies = messageStanza.getBodies();
+                        if (bodies.size() > 0) {
+                            Message message = new Message();
+                            message.setFromJID(messageStanza.getFrom().getBareJID().getFullQualifiedName());
+                            message.setToJID(messageStanza.getTo().getBareJID().getFullQualifiedName());
+                            message.setBody(bodies.values().iterator().next().getSingleInnerText().getText());
+                            message.setTime(new Date().getTime());
+                            messageService.saveMessage(message);
+                        }
                     } catch (Exception e) {
                         LOG.error("Save message failed.", e);
                     }
