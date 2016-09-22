@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 /**
  * @author Yuriy Tumakha.
@@ -15,6 +16,7 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @Size(min = 2, max = 20)
     @Column(unique = true, nullable = false)
     private String username;
 

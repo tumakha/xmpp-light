@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>XMPP Light : Users</title>
+</head>
+<body>
+<h2 layout:fragment="header">
+    Users
+    <div class="pull-right">
+        <a class="btn btn-primary" href="user.html" th:href="@{(user)}">Create user</a>
+    </div>
+</h2>
+<div layout:fragment="content">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Admin</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.numberOfElements == 0}">
+            <td colspan="4" style="text-align: center;">No users</td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td><a href="user.html" th:href="@{'user?userId=' + ${user.id}}"
+                   th:text="${user.username}">username</a></td>
+            <td>
+                <div th:with="isAdmin=${user.admin}" th:remove="tag">
+                    <span th:if="${isAdmin}">yes</span>
+                    <span th:unless="${isAdmin}">no</span>
+                </div>
+            </td>
+            <td>
+                <a href="delete" th:href="@{'deleteUser?userId=' + ${user.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

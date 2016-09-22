@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>XMPP Light : Error</title>
+</head>
+<body>
+<h2 layout:fragment="header">Error</h2>
+<div layout:fragment="content">
+    <div>
+        There was an unexpected error.
+    </div>
+    <div th:text="${error}">Message</div>
+</div>
+</body>
+</html>
