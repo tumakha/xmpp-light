@@ -8,12 +8,12 @@
 <body>
 <h2 layout:fragment="header">User</h2>
 <div layout:fragment="content" class="container">
-    <form class="form-horizontal" id="userForm" th:action="@{(saveUser)}" th:object="${user}" action="#" method="post">
+    <form class="form-horizontal" id="userForm" th:action="@{/saveUser}" th:object="${user}" action="#" method="post">
         <input type="hidden" th:field="*{id}"/>
         <div class="form-group">
             <label class="col-sm-2 control-label">Username:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{username}"
+                <input type="text" required class="form-control" th:field="*{username}"
                        th:class="${#fields.hasErrors('username')} ? 'error'"/>
                 <p style="color:red;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Incorrect date</p>
             </div>

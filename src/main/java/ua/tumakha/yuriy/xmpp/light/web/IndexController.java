@@ -23,6 +23,11 @@ public class IndexController implements ErrorController {
         return new ModelAndView("redirect:users");
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping(value = ERROR_PATH)
     public String error(HttpServletRequest request, Model model) {
         model.addAttribute("statusCode", request.getAttribute("javax.servlet.error.status_code"));

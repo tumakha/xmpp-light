@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" />
 </head>
 <body>
@@ -14,19 +14,19 @@
          th:remove="tag">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{./}" href="#">XMPP Light</a>
+            <a class="navbar-brand" th:href="@{/}" href="#">XMPP Light</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li th:class="${#strings.containsIgnoreCase(path,'user')} ? active : ''">
-                        <a href="users" th:href="@{(users)}">Users</a>
+                        <a href="users" th:href="@{/users}">Users</a>
                     </li>
                     <li th:class="${#strings.containsIgnoreCase(path,'message')} ? active : ''">
-                        <a href="messages" th:href="@{(messages)}">Messages</a>
+                        <a href="messages" th:href="@{/messages}">Messages</a>
                     </li>
                 </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="logout">Logout</a></li>
+                <li><a href="logout" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

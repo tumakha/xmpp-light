@@ -9,7 +9,7 @@
 <h2 layout:fragment="header">
     Users
     <div class="pull-right">
-        <a class="btn btn-primary" href="user.html" th:href="@{(user)}">Create user</a>
+        <a class="btn btn-primary" href="user.html" th:href="@{/user}">Create user</a>
     </div>
 </h2>
 <div layout:fragment="content">
@@ -28,7 +28,7 @@
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}">1</td>
-            <td><a href="user.html" th:href="@{'user?userId=' + ${user.id}}"
+            <td><a href="user.html" th:href="@{'/user?userId=' + ${user.id}}"
                    th:text="${user.username}">username</a></td>
             <td>
                 <div th:with="isAdmin=${user.admin}" th:remove="tag">
@@ -37,7 +37,7 @@
                 </div>
             </td>
             <td>
-                <a href="delete" th:href="@{'deleteUser?userId=' + ${user.id}}">Delete</a>
+                <a href="delete" th:href="@{'/deleteUser?userId=' + ${user.id}}">Delete</a>
             </td>
         </tr>
         </tbody>

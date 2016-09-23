@@ -42,6 +42,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <!-- Apache Vysper - XMPP (Jabber) server -->
         <dependency>
@@ -92,7 +96,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.name}</finalName>
+        <finalName>xmpplight</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
