@@ -6,12 +6,12 @@
     <title>XMPP Light : Error</title>
 </head>
 <body>
-<h2 layout:fragment="header">Error</h2>
+<h2 layout:fragment="header">Error <span th:text="${statusCode}" th:remove="tag">500</span></h2>
 <div layout:fragment="content">
     <div>
         There was an unexpected error.
     </div>
-    <div th:text="${error}">Message</div>
+    <div th:text="${exception}">Message</div>
 </div>
 </body>
 </html>

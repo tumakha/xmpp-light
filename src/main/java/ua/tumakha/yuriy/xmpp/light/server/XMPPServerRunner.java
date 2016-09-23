@@ -24,6 +24,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.InputStream;
 import java.util.Arrays;
 
@@ -44,6 +45,8 @@ public class XMPPServerRunner implements CommandLineRunner {
     @Autowired
     private MyMessageHandler myMessageHandler;
 
+    private XMPPServer xmppServer;
+
     private String domain;
     private int xmppPort;
     private String keystore;
@@ -62,7 +65,7 @@ public class XMPPServerRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        XMPPServer xmppServer = new XMPPServer(domain);
+        xmppServer = new XMPPServer(domain);
         xmppServer.setStorageProviderRegistry(storageProviderRegistry);
 
         final TCPEndpoint endpoint = new TCPEndpoint();
@@ -94,6 +97,11 @@ public class XMPPServerRunner implements CommandLineRunner {
         }
 
         LOG.info("XMPP Server is running on port {}", xmppPort);
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        xmppServer.stop();
     }
 
 }
