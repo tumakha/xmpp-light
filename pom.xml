@@ -5,7 +5,7 @@
 
     <groupId>ua.tumakha.yuriy.xmpp</groupId>
     <artifactId>xmpp-light</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.8-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>xmpp-light</name>
@@ -40,11 +40,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jpenren</groupId>
+            <artifactId>thymeleaf-spring-data-dialect</artifactId>
+            <version>3.2.0</version>
         </dependency>
 
         <!-- Apache Vysper - XMPP (Jabber) server -->

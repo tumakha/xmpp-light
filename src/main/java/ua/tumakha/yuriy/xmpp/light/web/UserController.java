@@ -2,7 +2,8 @@ package ua.tumakha.yuriy.xmpp.light.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public ModelAndView list() {
-        Page<User> users = userService.findAll(new PageRequest(0, 100));
+    public ModelAndView list(@SortDefault("username") Pageable pageable) {
+        Page<User> users = userService.findAll(pageable);
         return new ModelAndView("users", "users", users);
     }
 
