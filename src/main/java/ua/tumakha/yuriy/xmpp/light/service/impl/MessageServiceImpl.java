@@ -3,6 +3,7 @@ package ua.tumakha.yuriy.xmpp.light.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ua.tumakha.yuriy.xmpp.light.domain.Message;
 import ua.tumakha.yuriy.xmpp.light.repository.MessageRepository;
@@ -25,6 +26,11 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Page<Message> findAll(Pageable pageable) {
         return messageRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Message> findAll(Specification<Message> specification, Pageable pageable) {
+        return messageRepository.findAll(specification, pageable);
     }
 
 }

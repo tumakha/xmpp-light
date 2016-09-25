@@ -9,6 +9,42 @@
 <body>
 <h2 layout:fragment="header">Messages</h2>
 <div layout:fragment="content">
+    <form class="form-horizontal" id="searchForm" th:action="@{/messages}" th:object="${searchForm}" method="post">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Usernames:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{usernames}" class="form-control"
+                           placeholder="Comma or space separated usernames" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Keywords:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{keywords}"
+                           placeholder="Comma or space separated keywords" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="col-sm-1 control-label" style="white-space: nowrap;">Date Range:</label>
+                <div class="col-sm-5">
+                    <input type="text" placeholder="MM/DD/YYY" />
+                    <input type="text" placeholder="MM/DD/YYY" />
+                </div>
+                <div class="col-sm-6">
+                    <a id="clearButton" class="btn btn-default" th:href="@{/messages?clear}">Clear</a>
+                    <input type="submit" id="searchButton" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </div>
+
+    </form>
+
     <div class="row">
         <div class="col-sm-6">
             Show <span sd:page-size-selector="javascript"></span> entries
