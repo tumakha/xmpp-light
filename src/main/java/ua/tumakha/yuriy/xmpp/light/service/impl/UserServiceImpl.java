@@ -2,6 +2,9 @@ package ua.tumakha.yuriy.xmpp.light.service.impl;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value = "users", key = "#user.username")
     public void updateUser(User user) {
         User dbUser = findById(user.getId());
         dbUser.setUsername(user.getUsername());
@@ -37,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value = "users", key = "#username")
     public void changePassword(String username, String newPassword) {
         User user = findByUsername(username);
         if (user != null) {
@@ -46,6 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value = "users", allEntries = true)
     public void removeUser(Long userId) {
         userRepository.delete(userId);
     }
@@ -60,6 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "users", key = "#username", unless = "#result == null")
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }

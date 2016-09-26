@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.dialect.springdata.SpringDataDialect;
@@ -12,6 +13,7 @@ import org.thymeleaf.dialect.springdata.SpringDataDialect;
  * @author Yuriy Tumakha
  */
 @SpringBootApplication
+@EnableCaching
 public class WebApplication extends SpringBootServletInitializer {
 
     @Override
