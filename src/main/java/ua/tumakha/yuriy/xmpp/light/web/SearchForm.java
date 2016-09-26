@@ -6,14 +6,12 @@ import org.springframework.data.jpa.domain.Specification;
 import ua.tumakha.yuriy.xmpp.light.domain.Message;
 
 import javax.persistence.criteria.Predicate;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import static java.time.format.DateTimeFormatter.ofPattern;
-import static java.time.temporal.ChronoField.MILLI_OF_SECOND;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
 import static org.springframework.util.StringUtils.isEmpty;
