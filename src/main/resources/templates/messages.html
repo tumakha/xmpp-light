@@ -5,17 +5,30 @@
       layout:decorate="~{layout}">
 <head>
     <title>XMPP Light : Messages</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.min.css}"
+          href="../css/bootstrap-datetimepicker.min.css"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"
+            src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"
+            src="http://cdn.jsdelivr.net/webjars/org.webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/momentjs/min/moment-with-locales.min.js}"
+            src="http://cdn.jsdelivr.net/webjars/org.webjars.bower/momentjs/2.15.1/min/moment-with-locales.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.min.js}"
+            src="../js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/search.js}"
+            src="../js/search.js"></script>
 </head>
 <body>
 <h2 layout:fragment="header">Messages</h2>
 <div layout:fragment="content">
+
     <form class="form-horizontal" id="searchForm" th:action="@{/messages}" th:object="${searchForm}" method="post">
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Usernames:</label>
                 <div class="col-sm-10">
                     <input type="text" th:field="*{usernames}" class="form-control"
-                           placeholder="Comma or space separated usernames" />
+                           placeholder="Comma or space separated usernames"/>
                 </div>
             </div>
         </div>
@@ -24,7 +37,7 @@
                 <label class="col-sm-2 control-label">Keywords:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{keywords}"
-                           placeholder="Comma or space separated keywords" />
+                           placeholder="Comma or space separated keywords"/>
                 </div>
             </div>
         </div>
@@ -32,13 +45,29 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="white-space: nowrap;">Date Range:</label>
-                <div class="col-sm-5">
-                    <input type="text" placeholder="MM/DD/YYY" />
-                    <input type="text" placeholder="MM/DD/YYY" />
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepickerFrom">
+                            <input type="text" class="form-control" th:field="*{fromDate}"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepickerTo">
+                            <input type="text" class="form-control" th:field="*{toDate}"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <a id="clearButton" class="btn btn-default" th:href="@{/messages?clear}">Clear</a>
-                    <input type="submit" id="searchButton" class="btn btn-primary" value="Search" />
+                    <input type="submit" id="searchButton" class="btn btn-primary" value="Search"/>
                 </div>
             </div>
         </div>
@@ -53,7 +82,8 @@
             <nav class="pull-right">
                 <ul class="pagination" sd:pagination="full">
                     <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
                     <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                 </ul>
             </nav>
@@ -90,7 +120,8 @@
             <nav class="pull-right">
                 <ul class="pagination" sd:pagination="full">
                     <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
                     <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                 </ul>
             </nav>

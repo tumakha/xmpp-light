@@ -7,6 +7,15 @@ ul.pagination {
     width: 300px;
 }
 
+#searchForm .date {
+    width: 180px;
+    margin-left: 15px;
+}
+
+#searchForm .date .form-control {
+    width: 100%;
+}
+
 #searchForm #clearButton {
     width: 180px;
     margin-bottom: 15px;
@@ -16,4 +25,8 @@ ul.pagination {
     width: 180px;
     margin-left: 30px;
     margin-bottom: 15px;
+}
+
+.glyphicon-remove {
+    color: grey;
 }

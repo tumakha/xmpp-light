@@ -48,8 +48,8 @@
                    th:text="${user.username}">username</a></td>
             <td>
                 <div th:with="isAdmin=${user.admin}" th:remove="tag">
-                    <span th:if="${isAdmin}">yes</span>
-                    <span th:unless="${isAdmin}">no</span>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true" th:if="${isAdmin}"></span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" th:unless="${isAdmin}"></span>
                 </div>
             </td>
             <td>
