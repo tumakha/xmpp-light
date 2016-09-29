@@ -1,4 +1,7 @@
 # xmpp-light
+
+[![Build Status](https://travis-ci.org/tumakha/xmpp-light.svg?branch=master)](https://travis-ci.org/tumakha/xmpp-light)
+
 XMPP (Jabber) lightweight server based on Apache Vysper
 
 ### Prerequisites
